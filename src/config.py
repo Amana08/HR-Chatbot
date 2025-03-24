@@ -3,9 +3,11 @@ Configuration file for the HR Policy Chatbot
 """
 import os
 
-# Get the absolute path to the project root directory
-PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-print(f"Project Root Directory: {PROJECT_ROOT}")
+# Hardcoded project root and logo directory
+PROJECT_ROOT = "/libpostal/boot/HR-Chatbot"
+LOGO_DIR = os.path.join(PROJECT_ROOT, "src", "logos")
+print(f"Logo Directory: {LOGO_DIR}")
+print(f"Logo Directory exists: {os.path.exists(LOGO_DIR)}")
 
 # API Keys
 GEMINI_API_KEY = ""
@@ -30,46 +32,23 @@ SYSTEM_PROMPT = """I'm an HR Policy Chatbot developed by final year students of 
 I can help you with information about company HR policies and answer your questions about company benefits, 
 work culture, and policies."""
 
-# Image Paths
-LOGO_DIR = os.path.join(PROJECT_ROOT, "src", "logos")
-print(f"Logo Directory: {LOGO_DIR}")
-print(f"Logo Directory exists: {os.path.exists(LOGO_DIR)}")
+# Hardcoded logo paths
+BBD_LOGO_LOGIN = os.path.join(LOGO_DIR, "bbdlogo.png")
+BBD_LOGO_CHAT = os.path.join(LOGO_DIR, "bbdlogochat.png")
 
-# Function to find logo file regardless of case
-def find_logo_file(company_name):
-    """Find the logo file for a company, ignoring case and handling spaces."""
-    if not os.path.exists(LOGO_DIR):
-        return None
-        
-    company_name = company_name.lower().replace(" ", "")
-    for filename in os.listdir(LOGO_DIR):
-        if filename.lower().replace(" ", "") == f"{company_name}.png":
-            return os.path.join(LOGO_DIR, filename)
-    return None
-
-BBD_LOGO_LOGIN = find_logo_file("bbdlogo") or os.path.join(LOGO_DIR, "bbdlogo.png")
-BBD_LOGO_CHAT = find_logo_file("bbdlogochat") or os.path.join(LOGO_DIR, "bbdlogochat.png")
-
-print(f"BBD Login Logo path: {BBD_LOGO_LOGIN}")
-print(f"BBD Login Logo exists: {os.path.exists(BBD_LOGO_LOGIN)}")
-print(f"BBD Chat Logo path: {BBD_LOGO_CHAT}")
-print(f"BBD Chat Logo exists: {os.path.exists(BBD_LOGO_CHAT)}")
-
-# Company Logos (using absolute paths)
-COMPANY_LOGOS = {}
-COMPANIES = [
-    "Genpact", "HCL Tech", "TCS", "Infosys", "Wipro",
-    "Accenture", "Cognizant", "Capgemini", "Tech Mahindra", "IBM"
-]
-
-for company in COMPANIES:
-    logo_path = find_logo_file(company)
-    if logo_path:
-        COMPANY_LOGOS[company] = logo_path
-        print(f"{company} Logo path: {logo_path}")
-        print(f"{company} Logo exists: {os.path.exists(logo_path)}")
-    else:
-        print(f"Warning: Could not find logo for {company}")
+# Company Logos with hardcoded paths
+COMPANY_LOGOS = {
+    "Genpact": os.path.join(LOGO_DIR, "genpact.png"),
+    "HCL Tech": os.path.join(LOGO_DIR, "hcltech.png"),
+    "TCS": os.path.join(LOGO_DIR, "tcs.png"),
+    "Infosys": os.path.join(LOGO_DIR, "infosys.png"),
+    "Wipro": os.path.join(LOGO_DIR, "wipro.png"),
+    "Accenture": os.path.join(LOGO_DIR, "accenture.png"),
+    "Cognizant": os.path.join(LOGO_DIR, "cognizant.png"),
+    "Capgemini": os.path.join(LOGO_DIR, "capgemini.png"),
+    "Tech Mahindra": os.path.join(LOGO_DIR, "techmahindra.png"),
+    "IBM": os.path.join(LOGO_DIR, "ibm.png")
+}
 
 # Project Information
 CONTRIBUTORS = {
