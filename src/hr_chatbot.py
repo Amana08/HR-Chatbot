@@ -193,8 +193,21 @@ def create_chat_interface():
                     logo_path = COMPANY_LOGOS.get(company)
                     print(f"Selected company: {company}")
                     print(f"Logo path: {logo_path}")
-                    print(f"Logo exists: {os.path.exists(logo_path) if logo_path else False}")
-                    return logo_path if logo_path and os.path.exists(logo_path) else None
+                    
+                    # Additional debug information
+                    if logo_path:
+                        print(f"Logo directory contents:")
+                        for f in os.listdir(os.path.dirname(logo_path)):
+                            print(f"  {f}")
+                    
+                    exists = os.path.exists(logo_path) if logo_path else False
+                    print(f"Logo exists: {exists}")
+                    
+                    if not exists:
+                        print(f"Warning: Logo file not found for {company}")
+                        return None
+                    
+                    return logo_path
                 company_dropdown.change(fn=update_logo, inputs=company_dropdown, outputs=company_logo)
                 
                 image_input = gr.Image(
