@@ -1,6 +1,10 @@
 """
 Configuration file for the HR Policy Chatbot
 """
+import os
+
+# Get the absolute path to the project root directory
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # API Keys
 GEMINI_API_KEY = ""
@@ -26,13 +30,13 @@ I can help you with information about company HR policies and answer your questi
 work culture, and policies."""
 
 # Image Paths
-LOGO_DIR = "src/logos"
-BBD_LOGO_LOGIN = f"{LOGO_DIR}/bbdlogo.png"
-BBD_LOGO_CHAT = f"{LOGO_DIR}/bbdlogochat.png"
+LOGO_DIR = os.path.join(PROJECT_ROOT, "src", "logos")
+BBD_LOGO_LOGIN = os.path.join(LOGO_DIR, "bbdlogo.png")
+BBD_LOGO_CHAT = os.path.join(LOGO_DIR, "bbdlogochat.png")
 
-# Company Logos (using local paths)
+# Company Logos (using absolute paths)
 COMPANY_LOGOS = {
-    company: f"{LOGO_DIR}/{company.lower()}.png" for company in [
+    company: os.path.join(LOGO_DIR, f"{company.lower()}.png") for company in [
         "Genpact", "HCL Tech", "TCS", "Infosys", "Wipro",
         "Accenture", "Cognizant", "Capgemini", "Tech Mahindra", "IBM"
     ]
