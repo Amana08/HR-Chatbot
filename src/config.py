@@ -5,6 +5,7 @@ import os
 
 # Get the absolute path to the project root directory
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+print(f"Project Root Directory: {PROJECT_ROOT}")
 
 # API Keys
 GEMINI_API_KEY = ""
@@ -31,16 +32,27 @@ work culture, and policies."""
 
 # Image Paths
 LOGO_DIR = os.path.join(PROJECT_ROOT, "src", "logos")
+print(f"Logo Directory: {LOGO_DIR}")
+print(f"Logo Directory exists: {os.path.exists(LOGO_DIR)}")
+
 BBD_LOGO_LOGIN = os.path.join(LOGO_DIR, "bbdlogo.png")
 BBD_LOGO_CHAT = os.path.join(LOGO_DIR, "bbdlogochat.png")
 
+print(f"BBD Login Logo path: {BBD_LOGO_LOGIN}")
+print(f"BBD Login Logo exists: {os.path.exists(BBD_LOGO_LOGIN)}")
+print(f"BBD Chat Logo path: {BBD_LOGO_CHAT}")
+print(f"BBD Chat Logo exists: {os.path.exists(BBD_LOGO_CHAT)}")
+
 # Company Logos (using absolute paths)
-COMPANY_LOGOS = {
-    company: os.path.join(LOGO_DIR, f"{company.lower()}.png") for company in [
-        "Genpact", "HCL Tech", "TCS", "Infosys", "Wipro",
-        "Accenture", "Cognizant", "Capgemini", "Tech Mahindra", "IBM"
-    ]
-}
+COMPANY_LOGOS = {}
+for company in [
+    "Genpact", "HCL Tech", "TCS", "Infosys", "Wipro",
+    "Accenture", "Cognizant", "Capgemini", "Tech Mahindra", "IBM"
+]:
+    logo_path = os.path.join(LOGO_DIR, f"{company.lower()}.png")
+    COMPANY_LOGOS[company] = logo_path
+    print(f"{company} Logo path: {logo_path}")
+    print(f"{company} Logo exists: {os.path.exists(logo_path)}")
 
 # Project Information
 CONTRIBUTORS = {

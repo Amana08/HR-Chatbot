@@ -185,7 +185,16 @@ def create_chat_interface():
                 )
                 
                 def update_logo(company):
-                    return COMPANY_LOGOS.get(company, None) if company else None
+                    """Update the company logo based on selection."""
+                    if not company:
+                        print(f"No company selected")
+                        return None
+                    
+                    logo_path = COMPANY_LOGOS.get(company)
+                    print(f"Selected company: {company}")
+                    print(f"Logo path: {logo_path}")
+                    print(f"Logo exists: {os.path.exists(logo_path) if logo_path else False}")
+                    return logo_path if logo_path and os.path.exists(logo_path) else None
                 company_dropdown.change(fn=update_logo, inputs=company_dropdown, outputs=company_logo)
                 
                 image_input = gr.Image(
