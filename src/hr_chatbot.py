@@ -268,4 +268,4 @@ def create_app():
 
 if __name__ == "__main__":
     app = create_app()
-    app.launch(share=False)
+    app.launch(share=True, server_name="0.0.0.0", server_port=7860)
